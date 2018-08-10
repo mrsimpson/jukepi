@@ -21,5 +21,5 @@ Finally, a library simplifies programming to it:
 
 ## Links
 
-- http://www.raspis-world.de/p/raspberry-pi-als-junior-jukebox-der_19.html (german)
-- https://pimylifeup.com/raspberry-pi-rfid-rc522/
+- [original script from the Junior Jukebox Tutorial](http://www.raspis-world.de/p/raspberry-pi-als-junior-jukebox-der_19.html) (german-
+- [Simplified library and bootstrapping code](https://pimylifeup.com/raspberry-pi-rfid-rc522/)

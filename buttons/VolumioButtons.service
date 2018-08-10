@@ -1,0 +1,10 @@
+ [Unit]
+ Description=Pushbuttons for controlling Volumio
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ ExecStart=/usr/bin/python /home/volumio/jukepi/SimplePushbuttons.py
+
+ [Install]
+ WantedBy=multi-user.target
