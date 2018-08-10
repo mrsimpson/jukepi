@@ -29,7 +29,8 @@ button = {'pin': 29, 'command': 'volumio volume minus'}
 BUTTONS.append(button)
 
 def executeOs(command):
-    os.system(button.command)
+    print("executing " + command)
+    os.system(command)
 
 for button in BUTTONS:
     GPIO.setup(button.pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
