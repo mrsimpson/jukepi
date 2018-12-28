@@ -6,33 +6,47 @@ import os
 from subprocess import call
 from functools import partial
 
+class Button:
+    def __init__(self, pin, command):
+	self.pin = pin
+	self.command = command
+
 BUTTONS = []
 
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BOARD) #we're referring to the pin numbers in order, not the GPIO IDs
+#GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM) #we're referring to the GPIO IDs, not the sequence numbers
 
 # Map pins to functions
-button = {'pin': 14, 'command': 'if volumio status | grep -q play; then volumio pause; else volumio play; fi'}
-BUTTONS.append(button)
+playBtn = Button(17, 'if volumio status | grep -q play; then volumio pause; else volumio play; fi')
+BUTTONS.append(playBtn)
 
-button = {'pin': 13, 'command': 'volumio next'}
-BUTTONS.append(button)
+nextBtn = Button(21, 'volumio next')
+BUTTONS.append(nextBtn)
 
-button = {'pin': 11, 'command': 'volumio next'}
-BUTTONS.append(button)
+prevBtn = Button(22, 'volumio previous')
+BUTTONS.append(prevBtn)
 
 # We're using normal pushbuttons - if you use a rotary encoder, check the native volumio-plugin
-button = {'pin': 31, 'command': 'volumio volume plus'}
-BUTTONS.append(button)
+volumeUpBtn = Button(5, 'volumio volume plus')
+BUTTONS.append(volumeUpBtn)
 
-button = {'pin': 29, 'command': 'volumio volume minus'}
-BUTTONS.append(button)
+volumeDownBtn = Button(6, 'volumio volume minus')
+BUTTONS.append(volumeDownBtn)
 
-def executeOs(command):
-    print("executing " + command)
+def executeOs(command, pin): #we have to pass the pin as second argument since it will be passed by the caller anyway
+    #print("executing " + command)
     os.system(command)
 
+def trace(pin):
+	print pin, "pushed"
+
 for button in BUTTONS:
-    GPIO.setup(button.pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.add_event_detect(button.pin, GPIO.RISING)
-    GPIO.add_event_callback(button.pin, partial(executeOs, button.command))
+    print "BCM pin", button.pin, "setup to execute", button.command
+    GPIO.setup(button.pin, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+    GPIO.add_event_detect(button.pin, GPIO.RISING, callback=partial(executeOs, button.command), bouncetime=250)
+
+try:  
+    while True: 
+	time.sleep(1)
+except:
+    GPIO.cleanup()
