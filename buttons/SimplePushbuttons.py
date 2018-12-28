@@ -17,13 +17,13 @@ BUTTONS = []
 GPIO.setmode(GPIO.BCM) #we're referring to the GPIO IDs, not the sequence numbers
 
 # Map pins to functions
-playBtn = Button(17, 'if volumio status | grep -q play; then volumio pause; else volumio play; fi')
+playBtn = Button(22, 'if volumio status | grep -q play; then volumio pause; else volumio play; fi')
 BUTTONS.append(playBtn)
 
-nextBtn = Button(21, 'volumio next')
+nextBtn = Button(18, 'volumio next')
 BUTTONS.append(nextBtn)
 
-prevBtn = Button(22, 'volumio previous')
+prevBtn = Button(17, 'volumio previous')
 BUTTONS.append(prevBtn)
 
 # We're using normal pushbuttons - if you use a rotary encoder, check the native volumio-plugin
