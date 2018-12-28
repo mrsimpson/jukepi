@@ -20,7 +20,7 @@ GPIO.setmode(GPIO.BCM) #we're referring to the GPIO IDs, not the sequence number
 playBtn = Button(22, 'if volumio status | grep -q play; then volumio pause; else volumio play; fi')
 BUTTONS.append(playBtn)
 
-nextBtn = Button(18, 'volumio next')
+nextBtn = Button(23, 'volumio next')
 BUTTONS.append(nextBtn)
 
 prevBtn = Button(17, 'volumio previous')
@@ -47,6 +47,6 @@ for button in BUTTONS:
 
 try:  
     while True: 
-	time.sleep(1)
+	    time.sleep(1)
 except:
     GPIO.cleanup()
