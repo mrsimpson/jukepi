@@ -17,20 +17,20 @@ BUTTONS = []
 GPIO.setmode(GPIO.BCM) #we're referring to the GPIO IDs, not the sequence numbers
 
 # Map pins to functions
-playBtn = Button(22, 'if mpc | grep -q playing; then mpc pause; else mpc play; fi')
+playBtn = Button(22, 'if volumio status | grep -q play; then volumio pause; else volumio play; fi')
 BUTTONS.append(playBtn)
 
-nextBtn = Button(23, 'mpc next')
+nextBtn = Button(23, 'volumio next')
 BUTTONS.append(nextBtn)
 
-prevBtn = Button(17, 'mpc previous')
+prevBtn = Button(17, 'volumio previous')
 BUTTONS.append(prevBtn)
 
 # We're using normal pushbuttons - if you use a rotary encoder, check the native volumio-plugin
-volumeUpBtn = Button(5, 'mpc volume +5')
+volumeUpBtn = Button(5, 'volumio volume plus')
 BUTTONS.append(volumeUpBtn)
 
-volumeDownBtn = Button(6, 'mpc volume -5')
+volumeDownBtn = Button(6, 'volumio volume minus')
 BUTTONS.append(volumeDownBtn)
 
 def executeOs(command, pin): #we have to pass the pin as second argument since it will be passed by the caller anyway
