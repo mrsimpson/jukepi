@@ -6,11 +6,10 @@ In `/boot/config.txt`: `dtparam=spi=on`
 
 Validate using `lsmod | grep spi` => find `spidev` and `spi_bcm2835`
 
-For the driver, we need python:
+For the driver, we need python and a compiler for the current platform:
 
 ```bash
-sudo apt-get install git python-dev --yes
-sudo apt-get install python2.7-dev
+sudo apt-get install python2.7-dev build-essential
 ```
 
 and the actual driver:
