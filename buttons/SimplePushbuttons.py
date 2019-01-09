@@ -17,7 +17,7 @@ BUTTONS = []
 GPIO.setmode(GPIO.BCM) #we're referring to the GPIO IDs, not the sequence numbers
 
 # Map pins to functions
-playBtn = Button(22, 'if volumio status | grep -q play; then volumio pause; else volumio play; fi')
+playBtn = Button(25, 'if volumio status | grep -q play; then volumio pause; else volumio play; fi')
 BUTTONS.append(playBtn)
 
 nextBtn = Button(23, 'volumio next')
